@@ -36,7 +36,7 @@ class LanguagesPage extends StatelessWidget {
       'name': 'JavaScript',
       'image': 'https://upload.wikimedia.org/wikipedia/commons/6/6a/JavaScript-logo.png',
       'description': 'JavaScript — это язык программирования для веб-разработки.',
-      'price': '6000 руб',
+      'price': '6000 руб.',
     },
     {
       'name': 'Java',
