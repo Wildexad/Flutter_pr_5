@@ -86,9 +86,9 @@ class HomePage extends StatelessWidget {
             const SizedBox(height: 16),
             ElevatedButton(
               onPressed: () {},
-              child: const Text('Войти', style: TextStyle( fontSize: 16)),
+              child: const Text('Войти', style: TextStyle( fontSize: 17)),
               style: ElevatedButton.styleFrom(
-                textStyle: const TextStyle(fontSize: 16),
+                textStyle: const TextStyle(fontSize: 17),
                 backgroundColor: Colors.blue,
                 foregroundColor: Colors.white,
                 padding: const EdgeInsets.all(19),
