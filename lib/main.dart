@@ -1,136 +1,254 @@
 import 'package:flutter/material.dart';
 
 void main() {
-  runApp(const MyApp());
+  runApp(const ProgrammingLanguagesApp());
 }
 
-class MyApp extends StatelessWidget {
-  const MyApp({super.key});
+List<Map<String, String>> enrolledCourses = [];
+
+class ProgrammingLanguagesApp extends StatelessWidget {
+  const ProgrammingLanguagesApp({super.key});
 
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
-      debugShowCheckedModeBanner: false,
-      title: 'Практика 2',
       theme: ThemeData(
-        colorScheme: ColorScheme.fromSeed(seedColor: Colors.deepPurple),
-        useMaterial3: true,
+        brightness: Brightness.light,
+        primaryColor: Colors.white,
+        scaffoldBackgroundColor: Colors.green[50], // Легкий зеленый фон для всего приложения
+        cardColor: Colors.grey[200],
+        textTheme: TextTheme(
+          bodyLarge: TextStyle(color: Colors.black),
+          bodyMedium: TextStyle(color: Colors.black87),
+        ),
       ),
-      home: const HomePage(),
+      home: LanguagesPage(),
     );
   }
 }
 
-class HomePage extends StatelessWidget {
-  const HomePage({super.key});
+class LanguagesPage extends StatelessWidget {
+  final List<Map<String, String>> languages = [
+    {
+      'name': 'Python',
+      'image': 'https://i0.wp.com/junilearning.com/wp-content/uploads/2020/06/python-programming-language.webp?fit=1920%2C1920&ssl=1',
+      'description': 'Python — мультипарадигмальный высокоуровневый язык программирования общего назначения с динамической строгой типизацией и автоматическим управлением памятью, ориентированный на повышение производительности разработчика, читаемости кода и его качества, а также на обеспечение переносимости написанных на нём программ',
+      'price': '4999 руб',
+    },
+    {
+      'name': 'JavaScript',
+      'image': 'https://upload.wikimedia.org/wikipedia/commons/6/6a/JavaScript-logo.png',
+      'description': 'JavaScript — это язык программирования для веб-разработки.',
+      'price': '6000 руб.',
+    },
+    {
+      'name': 'Java',
+      'image': 'https://upload.wikimedia.org/wikipedia/commons/thumb/0/01/Bufo_bufo_03-clean.jpg/1024px-Bufo_bufo_03-clean.jpg',
+      'description': 'Java — популярный объектно-ориентированный язык программирования.',
+      'price': '7000 руб',
+    },
+    {
+      'name': 'C++',
+      'image': 'https://itmentor.by/images/articles/5-besplatnyh-materialov-po-izucheniyu-c-plus-plus.jpg',
+      'description': 'C++  — компилируемый, статически типизированный язык программирования общего назначения. Поддерживает такие парадигмы программирования, как процедурное программирование, объектно-ориентированное программирование, обобщённое программирование.',
+      'price': '6500 руб',
+    },
+    {
+      'name': 'Dart',
+      'image': 'https://habrastorage.org/getpro/habr/post_images/4cb/16c/04a/4cb16c04af8fc5b2f5e1aac1cc67ecd8.png',
+      'description': 'Dart считается языком общего назначения, но его создатели ориентировали его в первую очередь на фронтенд: создание интерфейсов и взаимодействие с браузером.',
+      'price': '5500 руб',
+    },
+  ];
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      body: Padding(
-        padding: const EdgeInsets.symmetric(horizontal: 16.0),
-        child: Column(
-          crossAxisAlignment: CrossAxisAlignment.stretch,
-          children: <Widget>[
-            const SizedBox(height: 80),
-            const Center(
-              child: Text(
-                'Авторизация',
-                style: TextStyle(fontSize: 30, fontWeight: FontWeight.bold),
+      appBar: AppBar(
+        title: Text(
+          'Курсы по языкам программирования',
+          style: TextStyle(color: Colors.white),
+        ),
+        backgroundColor: Colors.teal[700],
+        elevation: 4,
+        actions: [
+          IconButton(
+            icon: Icon(Icons.list, color: Colors.white),
+            onPressed: () {
+              Navigator.push(
+                context,
+                MaterialPageRoute(builder: (context) => EnrolledCoursesPage()),
+              );
+            },
+          ),
+        ],
+      ),
+      body: ListView.builder(
+        itemCount: languages.length,
+        itemBuilder: (context, index) {
+          return GestureDetector(
+            onTap: () {
+              Navigator.push(
+                context,
+                MaterialPageRoute(
+                  builder: (context) => LanguageDetailPage(language: languages[index]),
+                ),
+              );
+            },
+            child: Card(
+              margin: EdgeInsets.all(10),
+              shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(12)),
+              elevation: 4,
+              child: Padding(
+                padding: EdgeInsets.all(10),
+                child: Row(
+                  children: [
+                    ClipOval(
+                      child: Image.network(
+                        languages[index]['image']!,
+                        height: 50,
+                        width: 50,
+                        fit: BoxFit.cover,
+                        loadingBuilder: (context, child, loadingProgress) {
+                          if (loadingProgress == null) return child;
+                          return Center(child: CircularProgressIndicator());
+                        },
+                      ),
+                    ),
+                    SizedBox(width: 10),
+                    Text(
+                      languages[index]['name']!,
+                      style: TextStyle(
+                        fontSize: 22,
+                        fontWeight: FontWeight.bold,
+                        color: Colors.black,
+                      ),
+                    ),
+                  ],
+                ),
               ),
             ),
-            // Container(
-            Padding(
-              padding: const EdgeInsets.all(25.0),
-              child: Container(child: const SizedBox(height: 40)),
-            ),
-            const TextField(
-              decoration: InputDecoration(
-                hintText: 'Логин',
-                filled: true,
-                fillColor: Colors.black12,
-                border: OutlineInputBorder(
-                  borderRadius: BorderRadius.all(Radius.circular(12.0)),
-                  borderSide: BorderSide.none,
-                ),
+          );
+        },
+      ),
+    );
+  }
+}
 
-              ),
+class LanguageDetailPage extends StatelessWidget {
+  final Map<String, String> language;
+
+  LanguageDetailPage({required this.language});
+
+  @override
+  Widget build(BuildContext context) {
+    return Scaffold(
+      appBar: AppBar(
+        title: Text(
+          language['name']!,
+          style: TextStyle(color: Colors.black),
+        ),
+        backgroundColor: Colors.green[50], // Легкий зеленый фон
+        elevation: 0,
+      ),
+      body: Padding(
+        padding: EdgeInsets.all(16.0),
+        child: Column(
+          crossAxisAlignment: CrossAxisAlignment.start,
+          children: [
+            Image.network(
+              language['image']!,
+              height: 150,
             ),
-            const SizedBox(height: 16),
-            const TextField(
-              decoration: InputDecoration(
-                hintText: 'Пароль',
-                filled: true,
-                fillColor: Colors.black12,
-                border: OutlineInputBorder(
-                  borderRadius: BorderRadius.all(Radius.circular(12.0)),
-                  borderSide: BorderSide.none,
+            SizedBox(height: 20),
+            Text(
+              language['name']!,
+              style: TextStyle(fontSize: 28, fontWeight: FontWeight.bold),
+            ),
+            SizedBox(height: 10),
+            Text(
+              language['description']!,
+              style: TextStyle(fontSize: 16, color: Colors.black87),
+            ),
+            SizedBox(height: 20),
+            Text(
+              'Цена на обучение: ${language['price']}',
+              style: TextStyle(fontSize: 20, fontWeight: FontWeight.bold),
+            ),
+            SizedBox(height: 20),
+            Align(
+              alignment: Alignment.centerLeft,
+              child: ElevatedButton(
+                onPressed: () {
+                  enrolledCourses.add(language);
+                  ScaffoldMessenger.of(context).showSnackBar(
+                    SnackBar(content: Text('Вы записались на курс ${language['name']}')),
+                  );
+                },
+                style: ElevatedButton.styleFrom(
+                  backgroundColor: Colors.green,
+                  padding: EdgeInsets.symmetric(horizontal: 40, vertical: 15),
+                  textStyle: TextStyle(fontSize: 18),
                 ),
+                child: Text('Записаться на курс'),
               ),
-              obscureText: true,
             ),
-            const SizedBox(height: 8),
-            Center(
+          ],
+        ),
+      ),
+    );
+  }
+}
+
+class EnrolledCoursesPage extends StatelessWidget {
+  @override
+  Widget build(BuildContext context) {
+    return Scaffold(
+      appBar: AppBar(
+        title: Text('Мои курсы', style: TextStyle(color: Colors.black)),
+        backgroundColor: Colors.green[50], // Легкий зеленый фон
+        elevation: 0,
+      ),
+      body: ListView.builder(
+        itemCount: enrolledCourses.length,
+        itemBuilder: (context, index) {
+          return Card(
+            margin: EdgeInsets.all(10),
+            color: Theme.of(context).cardColor,
+            child: Padding(
+              padding: EdgeInsets.all(10),
               child: Row(
-                mainAxisSize: MainAxisSize.min,
+                mainAxisAlignment: MainAxisAlignment.spaceBetween,
                 children: [
-                  Checkbox(value: false, onChanged: (bool? value) {}),
-                  const Text(
-                    'Запомнить меня',
-                    style: TextStyle(color: Colors.grey, fontSize: 18),
+                  Column(
+                    crossAxisAlignment: CrossAxisAlignment.start,
+                    children: [
+                      Text(
+                        enrolledCourses[index]['name']!,
+                        style: TextStyle(fontSize: 22, fontWeight: FontWeight.bold),
+                      ),
+                      SizedBox(height: 10),
+                      Text(
+                        'Цена: ${enrolledCourses[index]['price']}',
+                        style: TextStyle(fontSize: 18, color: Colors.black87),
+                      ),
+                    ],
+                  ),
+                  IconButton(
+                    icon: Icon(Icons.delete, color: Colors.red),
+                    onPressed: () {
+                      enrolledCourses.removeAt(index);
+                      ScaffoldMessenger.of(context).showSnackBar(
+                        SnackBar(content: Text('Курс удалён')),
+                      );
+                      (context as Element).reassemble();
+                    },
                   ),
                 ],
               ),
             ),
-
-            const SizedBox(height: 16),
-            ElevatedButton(
-              onPressed: () {},
-              child: const Text('Войти', style: TextStyle( fontSize: 17)),
-              style: ElevatedButton.styleFrom(
-                textStyle: const TextStyle(fontSize: 17),
-                backgroundColor: Colors.blue,
-                foregroundColor: Colors.white,
-                padding: const EdgeInsets.all(19),
-                shape: RoundedRectangleBorder(
-                  borderRadius: BorderRadius.circular(5.0),
-                ),
-              ),
-            ),
-
-            Padding(
-              padding: const EdgeInsets.all(6.0),
-              child: const SizedBox(height: 8),
-            ),
-            OutlinedButton(
-              onPressed: () {},
-              style: OutlinedButton.styleFrom(
-                backgroundColor: Colors.white,
-                foregroundColor: Colors.blue,
-                minimumSize: const Size(double.infinity, 50),
-                shape: RoundedRectangleBorder(
-                  borderRadius: BorderRadius.circular(5.0),
-                ),
-                side: const BorderSide(
-                  color: Colors.blue,
-                  width: 1,
-                ),
-              ),
-              child: const Text('Регистрация', style: TextStyle( fontSize: 16)),
-            ),
-            const SizedBox(height: 8),
-            Center(
-              child: TextButton(
-                onPressed: () {},
-                child: const Text(
-                  'Восстановить пароль',
-                  style: TextStyle(color: Colors.grey, fontSize: 16),
-                ),
-              ),
-            ),
-          ],
-
-        ),
+          );
+        },
       ),
     );
   }
