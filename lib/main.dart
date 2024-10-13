@@ -12,6 +12,7 @@ class ProgrammingLanguagesApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
+      debugShowCheckedModeBanner: false,
       theme: ThemeData(
         brightness: Brightness.light,
         primaryColor: Colors.white,
@@ -56,7 +57,7 @@ class LanguagesPage extends StatelessWidget {
     {
       'name': 'Dart',
       'image': 'https://habrastorage.org/getpro/habr/post_images/4cb/16c/04a/4cb16c04af8fc5b2f5e1aac1cc67ecd8.png',
-      'description': 'Dart считается языком общего назначения, но его создатели ориентировали его в первую очередь на фронтенд: создание интерфейсов и взаимодействи с браузером.',
+      'description': 'Dart считается языком общего назначения, но его создатели ориентировали его в первую очередь на фронтенд: создание интерфейсов и взаимодействие с браузером.',
       'price': '5500 руб',
     },
   ];
@@ -200,7 +201,12 @@ class LanguageDetailPage extends StatelessWidget {
   }
 }
 
-class EnrolledCoursesPage extends StatelessWidget {
+class EnrolledCoursesPage extends StatefulWidget {
+  @override
+  _EnrolledCoursesPageState createState() => _EnrolledCoursesPageState();
+}
+
+class _EnrolledCoursesPageState extends State<EnrolledCoursesPage> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -237,11 +243,12 @@ class EnrolledCoursesPage extends StatelessWidget {
                   IconButton(
                     icon: Icon(Icons.delete, color: Colors.red),
                     onPressed: () {
-                      enrolledCourses.removeAt(index);
+                      setState(() {
+                        enrolledCourses.removeAt(index);
+                      });
                       ScaffoldMessenger.of(context).showSnackBar(
                         SnackBar(content: Text('Курс удалён')),
                       );
-                      (context as Element).reassemble();
                     },
                   ),
                 ],
