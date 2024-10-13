@@ -56,7 +56,7 @@ class LanguagesPage extends StatelessWidget {
     {
       'name': 'Dart',
       'image': 'https://habrastorage.org/getpro/habr/post_images/4cb/16c/04a/4cb16c04af8fc5b2f5e1aac1cc67ecd8.png',
-      'description': 'Dart считается языком общего назначения, но его создатели ориентировали его в первую очередь на фронтенд: создание интерфейсов и взаимодействие с браузером.',
+      'description': 'Dart считается языком общего назначения, но его создатели ориентировали его в первую очередь на фронтенд: создание интерфейсов и взаимодействи с браузером.',
       'price': '5500 руб',
     },
   ];
