@@ -1,16 +1,19 @@
-# pks
+# pks pr 4 Чебуреев Дмитрий ЭФБО-02-22
 
-A new Flutter project.
+## Записываемся на курс:
 
-## Getting Started
+![image](https://github.com/user-attachments/assets/c0c1243a-05ac-4eb4-810c-13c7f647574b)
 
-This project is a starting point for a Flutter application.
+![image](https://github.com/user-attachments/assets/15693715-e3ba-43b7-b0aa-e19e217e7930)
 
-A few resources to get you started if this is your first Flutter project:
+## Нажмаем на кнопку курсов на кготорые мы записались:
 
-- [Lab: Write your first Flutter app](https://docs.flutter.dev/get-started/codelab)
-- [Cookbook: Useful Flutter samples](https://docs.flutter.dev/cookbook)
+![image](https://github.com/user-attachments/assets/c7798bba-3f22-466c-a8eb-31945763b1ab)
 
-For help getting started with Flutter development, view the
-[online documentation](https://docs.flutter.dev/), which offers tutorials,
-samples, guidance on mobile development, and a full API reference.
+## Реализована кнопка удаления курса:
+
+![image](https://github.com/user-attachments/assets/3e7e1a5d-0f49-453f-aeec-77dc3ab95908)
+
+## После нажатия курс будет удален:
+
+![image](https://github.com/user-attachments/assets/c384f77e-103e-4b75-88dc-c66cd28de1c7)
