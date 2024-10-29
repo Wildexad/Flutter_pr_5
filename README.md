@@ -1,19 +1,22 @@
-# pks pr 4 Чебуреев Дмитрий ЭФБО-02-22
+# pks pr 5 Чебуреев Дмитрий ЭФБО-02-22
 
-## Записываемся на курс:
+## Главное меню выглядит так:
 
-![image](https://github.com/user-attachments/assets/c0c1243a-05ac-4eb4-810c-13c7f647574b)
+![image](https://github.com/user-attachments/assets/f1cc894d-7239-41b5-ac10-3115c39467fe)
 
-![image](https://github.com/user-attachments/assets/15693715-e3ba-43b7-b0aa-e19e217e7930)
+## Нажмаем на кнопку добавления курсов:
 
-## Нажмаем на кнопку курсов на кготорые мы записались:
+![image](https://github.com/user-attachments/assets/b49c55e0-9159-422b-9054-e17e676de5a7)
 
-![image](https://github.com/user-attachments/assets/c7798bba-3f22-466c-a8eb-31945763b1ab)
+## после добавления:
 
-## Реализована кнопка удаления курса:
+![image](https://github.com/user-attachments/assets/efaf7e29-3d9c-4494-b30d-89b6f12fd637)
+![image](https://github.com/user-attachments/assets/e2cf2d30-bf75-4907-a5d1-b825f12e1997)
 
-![image](https://github.com/user-attachments/assets/3e7e1a5d-0f49-453f-aeec-77dc3ab95908)
 
-## После нажатия курс будет удален:
+## Реализована кнопка удаления курса из главного меню:
 
-![image](https://github.com/user-attachments/assets/c384f77e-103e-4b75-88dc-c66cd28de1c7)
+![image](https://github.com/user-attachments/assets/46b5aa55-56ef-45b8-91e3-f8039a60d92b)
+![image](https://github.com/user-attachments/assets/f03f25b4-f0d2-4188-a17a-b8c0a15dbd95)
+
+
