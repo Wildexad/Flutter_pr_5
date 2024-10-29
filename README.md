@@ -17,6 +17,7 @@
 ## Реализована кнопка удаления курса из главного меню:
 
 ![image](https://github.com/user-attachments/assets/46b5aa55-56ef-45b8-91e3-f8039a60d92b)
+
 ![image](https://github.com/user-attachments/assets/f03f25b4-f0d2-4188-a17a-b8c0a15dbd95)
 
 
